@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Checkout - Electroz</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        .product-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+        }
+
+        .checkout-summary {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkout-summary h5 {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .product-price {
+            color: #333;
+        }
+
+        .btn-primary {
+            background-color: #0D6EFD;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .header-logo img {
+            width: 150px;
+            height: auto;
+        }
+
+        .footer {
+            background-color: #222;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .product-widget {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .product-widget:last-child {
+            border-bottom: none;
+        }
+
+        .header-links {
+            color: #fff;
+        }
+
+        .header-links a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .header-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="bg-dark text-white py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="index.html" class="header-logo">
+                        <img src="img/logo.png" alt="Logo Electroz">
+                    </a>
+                </div>
+                <div class="col-md-6 text-right">
+                    <ul class="header-links">
+                        <li><a href="#"><i class="fa fa-phone"></i> +62-21-1234-5678</a></li>
+                        <li><a href="#"><i class="fa fa-envelope"></i> info@electroz.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- /HEADER -->
+
+    <!-- MAIN CONTENT -->
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Checkout</h2>
+
+        <div class="row">
+            <!-- Keranjang Belanja -->
+            <div class="col-md-8">
+                <div class="checkout-summary">
+                    <h5>Keranjang Belanja</h5>
+                    <div id="cart-items"></div> <!-- Menampilkan produk dari keranjang -->
+
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <h5>Total: <strong id="cart-total"></strong></h5>
+                    </div>
+                </div>
+            </div>
+            <!-- /Keranjang Belanja -->
+
+            <!-- Form Pengiriman -->
+            <div class="col-md-4">
+                <div class="checkout-summary">
+                    <h5>Informasi Pengiriman</h5>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nama Lengkap:</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Alamat Pengiriman:</label>
+                            <textarea class="form-control" id="address" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Nomor Telepon:</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Kirim Pesanan</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /Form Pengiriman -->
+        </div>
+
+        <hr>
+
+        <!-- Ringkasan Pembayaran -->
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="checkout-summary">
+                    <h5>Ringkasan Pembayaran</h5>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Subtotal:</span>
+                        <strong id="subtotal-price"></strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Ongkir:</span>
+                        <strong id="shipping-cost">Rp50.000</strong>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <h5>Total Pembayaran:</h5>
+                        <h5><strong id="total-payment"></strong></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Ringkasan Pembayaran -->
+    </div>
+    <!-- /MAIN CONTENT -->
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2023 Electroz. All Rights Reserved.</p>
+    </footer>
+    <!-- /FOOTER -->
+
+    <!-- Bootstrap JS, Popper, jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        // Mengambil data keranjang dari localStorage
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const subtotalPrice = document.getElementById('subtotal-price');
+        const totalPayment = document.getElementById('total-payment');
+        const shippingCost = 50000; // Biaya pengiriman tetap
+
+        // Menampilkan produk yang ada di keranjang
+        let total = 0;
+        cart.forEach(item => {
+            total += item.totalPrice;
+            const productDiv = document.createElement('div');
+            productDiv.classList.add('product-widget', 'd-flex', 'justify-content-between', 'mb-3');
+            productDiv.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <span class="product-name">${item.productName} x${item.quantity}</span>
+                </div>
+                <span class="product-price">Rp${item.totalPrice.toLocaleString()}</span>
+            `;
+            cartItemsContainer.appendChild(productDiv);
+        });
+
+        // Menampilkan total harga produk (subtotal)
+        cartTotal.textContent = `Rp${total.toLocaleString()}`;
+        subtotalPrice.textContent = `Rp${total.toLocaleString()}`;
+
+        // Menampilkan total pembayaran (termasuk biaya pengiriman)
+        const totalWithShipping = total + shippingCost;
+        totalPayment.textContent = `Rp${totalWithShipping.toLocaleString()}`;
+    </script>
+
+</body>
+
+</html>

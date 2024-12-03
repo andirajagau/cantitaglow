@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Keranjang Belanja - Electroz</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        .product-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .product-price {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #0D6EFD;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .cart-summary {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-logo img {
+            width: 150px;
+            height: auto;
+        }
+
+        .footer {
+            background-color: #222;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .header-links a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .header-links a:hover {
+            text-decoration: underline;
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: red;
+            cursor: pointer;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-controls input {
+            width: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="bg-dark text-white py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Logo yang mengarah ke index.html -->
+                    <a href="index.html" class="header-logo">
+                        <img src="img/logo.png" alt="Logo Electroz">
+                    </a>
+                </div>
+                <div class="col-md-6 text-right">
+                    <ul class="header-links">
+                        <li><a href="#"><i class="fa fa-phone"></i> +62-21-1234-5678</a></li>
+                        <li><a href="#"><i class="fa fa-envelope"></i> info@electroz.com</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- /HEADER -->
+
+    <!-- MAIN CONTENT -->
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Keranjang Belanja Anda</h2>
+
+        <div class="row">
+            <!-- Daftar Produk di Keranjang -->
+            <div class="col-md-8">
+                <div class="cart-summary">
+                    <h5>Daftar Produk</h5>
+
+                    <!-- Item Produk -->
+                    <div class="cart-item d-flex justify-content-between align-items-center" data-price="12000000" data-item="laptop">
+                        <div class="d-flex align-items-center">
+                            <img src="./img/product06.png" alt="Laptop ASUS ROG" class="product-img mr-3">
+                            <div>
+                                <p class="product-name">Laptop ASUS ROG</p>
+                                <p class="product-price">Rp12.000.000</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center quantity-controls">
+                            <button class="btn btn-sm btn-light" onclick="updateQuantity(this, -1)">-</button>
+                            <input type="number" value="1" min="1" class="quantity" onchange="updatePrice(this)">
+                            <button class="btn btn-sm btn-light" onclick="updateQuantity(this, 1)">+</button>
+                        </div>
+                        <div class="d-flex">
+                            <button class="delete-btn" onclick="removeItem(this, 12000000)"><i class="fa fa-trash"></i> Hapus</button>
+                        </div>
+                    </div>
+
+                    <!-- Item Produk -->
+                    <div class="cart-item d-flex justify-content-between align-items-center" data-price="3500000" data-item="headphone">
+                        <div class="d-flex align-items-center">
+                            <img src="./img/product05.png" alt="Headphone Sony WH-1000XM4" class="product-img mr-3">
+                            <div>
+                                <p class="product-name">Headphone Sony WH-1000XM4</p>
+                                <p class="product-price">Rp3.500.000</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center quantity-controls">
+                            <button class="btn btn-sm btn-light" onclick="updateQuantity(this, -1)">-</button>
+                            <input type="number" value="1" min="1" class="quantity" onchange="updatePrice(this)">
+                            <button class="btn btn-sm btn-light" onclick="updateQuantity(this, 1)">+</button>
+                        </div>
+                        <div class="d-flex">
+                            <button class="delete-btn" onclick="removeItem(this, 3500000)"><i class="fa fa-trash"></i> Hapus</button>
+                        </div>
+                    </div>
+
+                    <!-- Item Produk -->
+                    <div class="cart-item d-flex justify-content-between align-items-center" data-price="7000000" data-item="tablet">
+                        <div class="d-flex align-items-center">
+                            <img src="./img/product04.png" alt="Tablet Samsung Galaxy Tab S7" class="product-img mr-3">
+                            <div>
+                                <p class="product-name">Tablet Samsung Galaxy Tab S7</p>
+                                <p class="product-price">Rp7.000.000</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center quantity-controls">
+                            <button class="btn btn-sm btn-light" onclick="updateQuantity(this, -1)">-</button>
+                            <input type="number" value="1" min="1" class="quantity" onchange="updatePrice(this)">
+                            <button class="btn btn-sm btn-light" onclick="updateQuantity(this, 1)">+</button>
+                        </div>
+                        <div class="d-flex">
+                            <button class="delete-btn" onclick="removeItem(this, 7000000)"><i class="fa fa-trash"></i> Hapus</button>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Total Keranjang -->
+                    <div class="d-flex justify-content-between">
+                        <h5>Total:</h5>
+                        <h5><strong id="total-price">Rp22.500.000</strong></h5>
+                    </div>
+                </div>
+            </div>
+            <!-- /Daftar Produk di Keranjang -->
+
+            <!-- Ringkasan Pembayaran -->
+            <div class="col-md-4">
+                <div class="cart-summary">
+                    <h5>Ringkasan Pembayaran</h5>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Subtotal:</span>
+                        <strong id="subtotal">Rp22.500.000</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Pengiriman:</span>
+                        <strong>Rp50.000</strong>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between">
+                        <h5>Total Pembayaran:</h5>
+                        <h5><strong id="total-payment">Rp22.550.000</strong></h5>
+                    </div>
+
+                    <a href="checkout.html" class="btn btn-primary w-100 mt-4">Lanjutkan ke Checkout</a>
+                </div>
+            </div>
+            <!-- /Ringkasan Pembayaran -->
+        </div>
+    </div>
+    <!-- /MAIN CONTENT -->
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2023 Electroz. All Rights Reserved.</p>
+    </footer>
+    <!-- /FOOTER -->
+
+    <!-- Bootstrap JS, Popper, jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <!-- Script untuk menyimpan data keranjang ke localStorage -->
+<script>
+    let totalPrice = 22500000;
+    let shippingCost = 50000;
+
+    // Fungsi untuk memperbarui total harga
+    function updateTotal() {
+        let total = totalPrice + shippingCost;
+        document.getElementById("total-price").textContent = `Rp${totalPrice.toLocaleString()}`;
+        document.getElementById("total-payment").textContent = `Rp${total.toLocaleString()}`;
+        document.getElementById("subtotal").textContent = `Rp${totalPrice.toLocaleString()}`;
+    }
+
+    // Fungsi untuk memperbarui jumlah produk
+    function updateQuantity(button, change) {
+        const input = button.closest('.cart-item').querySelector('.quantity');
+        let currentQuantity = parseInt(input.value);
+        currentQuantity += change;
+        if (currentQuantity < 1) currentQuantity = 1;
+        input.value = currentQuantity;
+
+        updatePrice(input);
+    }
+
+    // Fungsi untuk memperbarui harga berdasarkan jumlah produk
+    function updatePrice(input) {
+        const quantity = parseInt(input.value);
+        const pricePerItem = parseInt(input.closest('.cart-item').getAttribute('data-price'));
+        const itemTotal = pricePerItem * quantity;
+
+        // Perbarui harga produk
+        input.closest('.cart-item').querySelector('.product-price').textContent = `Rp${itemTotal.toLocaleString()}`;
+
+        // Perbarui total keranjang
+        totalPrice = Array.from(document.querySelectorAll('.cart-item')).reduce((total, item) => {
+            const itemQuantity = parseInt(item.querySelector('.quantity').value);
+            const itemPrice = parseInt(item.getAttribute('data-price'));
+            return total + (itemPrice * itemQuantity);
+        }, 0);
+
+        // Menyimpan data keranjang ke localStorage
+        saveCartToLocalStorage();
+        updateTotal();
+    }
+
+    // Fungsi untuk menyimpan data keranjang ke localStorage
+    function saveCartToLocalStorage() {
+        const cartItems = Array.from(document.querySelectorAll('.cart-item')).map(item => {
+            const productName = item.querySelector('.product-name').textContent;
+            const quantity = parseInt(item.querySelector('.quantity').value);
+            const price = parseInt(item.getAttribute('data-price'));
+            const totalPrice = price * quantity;
+            return { productName, quantity, price, totalPrice };
+        });
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+    }
+
+    // Fungsi untuk menghapus item
+    function removeItem(button, price) {
+        // Mengurangi harga total
+        totalPrice -= price;
+        // Menghapus elemen item
+        let cartItem = button.closest('.cart-item');
+        cartItem.remove();
+        // Update total harga
+        saveCartToLocalStorage();
+        updateTotal();
+    }
+</script>
+
+    </script>
+
+</body>
+</html>
